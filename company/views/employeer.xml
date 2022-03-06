@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_person_kanban" model="ir.ui.view">
+            <field name="name">company.employee.kanban</field>
+            <field name="model">company.employee</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="image"/>
+                    <field name="name"/>
+                    <field name="lastname"/>
+                    <field name="selfid"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="oe_kanban_details">
+                                    <ul>
+                                        <li>
+                                            person: <field name="image" widget="image" class="oe_avatar"/>
+                                        </li>
+                                        <li>
+                                            name: <field name="name"/>
+                                        </li>
+                                        <li>
+                                            lastname: <field name="lastname"/>
+                                        </li>
+                                        <li>
+                                            age: <field name="age"/>
+                                        </li>
+                                        <li>
+                                            person ID: <field name="selfid"/>
+                                        </li>                                   
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+    </record>
+
+
+    <record id="person_tree" model="ir.ui.view">
+            <field name="name">company.employee.tree</field>
+            <field name="model">company.employee</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <header>
+                        <button name="export_to_json" string="Export to Json" class="btn-primary" type="object"/>
+                    </header>
+                    <field name="name"/>
+                    <field name="lastname"/>
+                    <field name="selfid"/>
+                    <field name="gender"/>
+                    <field name="birthdate"/>
+                    <field name="age"/>
+                    <field name="birthplace"/>
+                    <field name="sitizen"/>
+                    <field name="departament"/>
+                    <field name="feature"/>
+                </tree>
+            </field>
+    </record>
+
+    <record id="employeer_form" model="ir.ui.view">
+            <field name="name">company.employee.form</field>
+            <field name="model">company.employee</field>
+            <field name="arch" type="xml">
+                <form>      
+                    <header>
+                        <button name="export_to_json" string="Convert Json" class="btn-primary" type="object"/>
+                    </header>
+                    <sheet>
+                        <field name="image" widget="image" class="oe_avatar"/>
+                        <field name="image2" widget="image" class="oe_avatar"/>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="lastname"/>
+                                <field name="selfid"/>
+                                <field name="birthdate"/>
+                                <field name="age"/>
+                                <field name="birthplace"/>
+                                <field name="sitizen"/>
+                                <field name="gender"/>
+                            </group>
+                            <group>
+                                <field name ="departament"/>
+                                <field name = "feature"/>
+                            </group>
+                            <group>
+                                <field name="note"/>
+                            </group>                            
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+    </record>
+    
+    <record id="patient_search" model="ir.ui.view">
+            <field name="name">company.employee.search</field>
+            <field name="model">company.employee</field>
+            <field name="arch" type="xml">
+                <search string="Employeers...">
+                    <field name="name"/>
+                    <field name="selfid"/>
+                    <separator/>
+                    <filter string="Administration" name="Administration" domain="[('departament', '=', 'Administration')]"/>
+                    <filter string="Sels" name="Sels" domain="[('departament', '=', 'Sels')]"/>
+                    <filter string="Finances" name="Finances" domain="[('departament', '=', 'Finances')]"/>
+                    <filter string="PR/marketing" name="PR/marketing" domain="[('departament', '=', 'PR/marketing')]"/>
+                    <filter string="Logistic" name="Logistic" domain="[('departament', '=', 'Logistic')]"/>
+                    <filter string="Build" name="Build" domain="[('departament', '=', 'Build')]"/>
+                    <filter string="IT" name="IT" domain="[('departament', '=', 'IT')]"/>
+                    <filter string="Educate" name="Educate" domain="[('departament', '=', 'Educate')]"/>
+                    <filter string="Low" name="Low" domain="[('departament', '=', 'Low')]"/>
+                    <filter string="Health" name="Health" domain="[('departament', '=', 'Health')]"/>
+                    <filter string="food" name="food" domain="[('departament', '=', 'food')]"/>
+                    <filter string="Other" name="Other" domain="[('departament', '=', 'Other')]"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Gender" name="gender" context="{'group_by':'gender'}"/>
+                        <filter string="Departament" name="departament" context="{'group_by':'departament'}"/>
+                        <filter string="age" name="age" context="{'group_by':'age'}"/>
+                        <filter string="sitizen" name="sitizen" context="{'group_by':'sitizen'}"/>
+                    </group>
+                </search>
+            </field>
+    </record>
+
+    
+
+    <record id="person_action" model="ir.actions.act_window">
+            <field name="name">All employeers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">company.employee</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    create new person here// add domain age 
+                </p><p>
+                    Once the quotation is confirmed, it becomes a sales order.<br/> 
+                </p>
+            </field>
+    </record>
+
+    <menuitem id="company_root"
+            name="Company"
+            sequence="12"/>
+
+    <menuitem id="company_employeer_root"
+            name="Persons"
+            parent = 'company_root'
+            sequence="12"/>
+
+    <menuitem id="company_employeer"
+            name="Employeers"
+            parent = 'company_employeer_root'
+            action="person_action"
+            sequence="12"/>
+
+</odoo>

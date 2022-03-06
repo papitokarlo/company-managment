@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_employeer_full">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <div class="row">
+                            <div class="col-xs-2" style="margin:auto;">
+                            </div>
+                            <center>
+                                <div class="col-xs-8" style="margin:auto">
+                                    <table class="table table-condensed" style="border: 3px solid black !important;">
+                                        <tr>
+                                            <td width="40%">
+                                                <p style="text-align:center;padding-top:10px;">
+                                                    <img t-if="not o.image" t-att-src="'/web/static/src/img/placeholder.png'" height="120" border="1" width="120"/>
+                                                    <img t-if="o.image" t-att-src="'data:image/png;base64,%s' % to_text(o.image)" height="120" border="1" width="120"/>
+                                                </p>
+                                                <p style="text-align:center;padding-top:10px;">
+                                                    <img t-if="not o.image2" t-att-src="'/web/static/src/img/placeholder.png'" height="120" border="1" width="120"/>
+                                                    <img t-if="o.image2" t-att-src="'data:image/png;base64,%s' % to_text(o.image2)" height="120" border="1" width="120"/>
+                                                </p>
+                                            </td>
+                                            <td width="80%">
+                                                <table>
+                                                    <tr>
+                                                        <td colspan="3" class="text-center">
+                                                            <span t-field="o.name"/>                                                            
+                                                        </td>
+                                                        <td colspan="3" class="text-center">
+                                                            <span t-field="o.lastname"/>                                                            
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span>
+                                                                <strong> gendr: </strong>
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <span>
+                                                                <span> : </span>
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <span>
+                                                                <span t-field="o.gender"/>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span>
+                                                                <strong> Id: </strong>
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <span>
+                                                                <span> : </span>
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <span>
+                                                                <span t-field="o.selfid"/>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span>
+                                                                <strong> date of birth : </strong>
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <span>
+                                                                <span> : </span>
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <span>
+                                                                <span t-field="o.birthdate"/>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span>
+                                                                <strong> age : </strong>
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <span>
+                                                                <span> : </span>
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <span>
+                                                                <span t-field="o.age"/>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span>
+                                                                <strong> place of birth: </strong>
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <span>
+                                                                <span> : </span>
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <span>
+                                                                <span t-field="o.birthplace"/>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td>
+                                                            <span>
+                                                                <strong> Citizen: </strong>
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <span>
+                                                                <span> : </span>
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <span>
+                                                                <span t-field="o.sitizen"/>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    
+
+                                                    <tr>
+                                                        <td>
+                                                            <span>
+                                                                <strong> departament: </strong>
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <span>
+                                                                <span> : </span>
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <span>
+                                                                <span t-field="o.departament"/>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span>
+                                                                <strong> feature: </strong>
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <span>
+                                                                <span> : </span>
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <span>
+                                                                <span t-field="o.feature"/>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span>
+                                                                <strong> note: </strong>
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <span>
+                                                                <span> : </span>
+                                                            </span>
+                                                        </td>
+                                                        <td>
+                                                            <span>
+                                                                <span t-field="o.note"/>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                   
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     
+    <record id="per_tree_dep" model="ir.ui.view">
+        <field name="name">departament.report</field>
+        <field name="model">departament.report.sql</field>
+        <field name="arch" type="xml">
+            <tree string="Departaments">
+                <field name="departament"/>
+                <field name="amount"/> 
+            </tree>
+        </field>
+    </record>
+
+   
+
+
+    <record id="report_view_departament" model="ir.actions.act_window">
+        <field name="name">Departament Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">departament.report.sql</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                sq report here
+            </p>
+        </field>
+    </record>
+ 
+    
+    <menuitem
+        id="departament_report" 
+        name="Report Departament" 
+        parent="company_emp_departament"
+        action="report_view_departament" 
+        sequence="20"/>
+
+</odoo>

@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_company_employee,access.company.employee,model_company_employee,,1,1,1,1
+
+access_empoyer_feature,access.empoyer.feature,model_empoyer_feature,,1,1,1,1
+
+access_employeer_departament,access.employeer.departament,model_employeer_departament,,1,1,1,1
+
+access_temporary_create_departament,access.temporary.create.departament,model_temporary_create_departament,,1,1,1,1
+
+access_departament_report_sql,access.departament.report.sql,model_departament_report_sql,,1,1,1,1
+

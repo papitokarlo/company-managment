@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="create_departament_tree" model="ir.ui.view">
+        <field name="name">temporary.create.departament.form</field>
+        <field name="model">temporary.create.departament</field>
+        <field name="arch" type="xml">
+            <form string="Departaments">
+                <field name="departament"/>
+                <field name="departament_manager"/>
+                <field name="amount"/>      
+            </form>
+        </field>
+    </record>
+
+    
+
+    <record id="create_departament_wizard" model="ir.actions.act_window">
+        <field name="name">Departament Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">temporary.create.departament</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="create_departament_tree"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

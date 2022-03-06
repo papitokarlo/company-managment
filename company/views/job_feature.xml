@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_empfeature_kanban" model="ir.ui.view">
+            <field name="name">empoyer.feature.kanban</field>
+            <field name="model">empoyer.feature</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="feature"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="oe_kanban_details">
+                                    <ul>
+                                        <li>
+                                            feature : <field name="feature"/>
+                                        </li>
+                                        
+                                        <li>
+                                            decription : <field name="descr"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+    </record>
+
+    <record id="empfeature_tree" model="ir.ui.view">
+            <field name="name">empoyer.feature.tree</field>
+            <field name="model">empoyer.feature</field>
+            <field name="arch" type="xml">
+                <tree>
+                    
+                    <field name="feature"/>
+                    <field name="descr"/>
+                </tree>
+            </field>
+    </record>
+
+    
+
+    <record id="empfeature_form" model="ir.ui.view">
+            <field name="name">empoyer.feature.form</field>
+            <field name="model">empoyer.feature</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button id="export_to_json" name="export_to_json" string="Convert Json" class="btn-primary" type="object"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="feature"/>
+                            </group>
+                            <group>
+                                <field name="descr"/>
+                            </group>                             
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+    </record>
+
+    <record id="action_empfeature" model="ir.actions.act_window">
+            <field name="name">Feature</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">empoyer.feature</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    create job features here
+                </p>
+            </field>
+    </record>
+        
+    <menuitem
+        id="employee_feature" 
+        name="Feature" 
+        parent="company_root" 
+        action="action_empfeature" 
+        sequence="20"/>
+
+</odoo>

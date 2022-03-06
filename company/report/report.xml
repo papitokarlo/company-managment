@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="report_employeer_details" model="ir.actions.report">
+            <field name="name">Employeer Details</field>
+            <field name="model">company.employee</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">company.report_employeer_full</field>
+            <field name="report_file">company.report_employeer_full</field>
+            <field name="binding_model_id" ref="model_company_employee"/>
+            <field name="binding_type">report</field>
+        </record>
+    
+        <record id="report_employeer_xls" model="ir.actions.report">
+            <field name="name">Employeer Details XLSX</field>
+            <field name="model">company.employee</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">company.report_employeer_xlsx</field>
+            <field name="report_file">company.report_employeer_xlsx</field>
+            <field name="binding_model_id" ref="model_company_employee"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="report_departament_xls" model="ir.actions.report">
+            <field name="name">departaments XLSX</field>
+            <field name="model">employeer.departament</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">company.report_departament_xls</field>
+            <field name="report_file">company.report_departament_xls</field>
+            <field name="binding_model_id" ref="model_employeer_departament"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="manager_tree" model="ir.ui.view">
+            <field name="name">company.employee.tree</field>
+            <field name="model">company.employee</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="lastname"/>
+                    <field name="age"/>
+                </tree>
+            </field>
+    </record>
+    
+
+    <record id="manager_action" model="ir.actions.act_window">
+            <field name="name">Teenagers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">company.employee</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="context">{}</field>
+            <field name="domain">[('age', '&lt;', 22)]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    create new managers here// add domain age 
+                </p><p>
+                    Once the quotation is confirmed, it becomes a sales order.<br/> 
+                </p>
+            </field>
+    </record>
+    <menuitem id="company_manager"
+            name="Teenagers"
+            parent = 'company_employeer_root'
+            action="manager_action"
+            sequence="10"/>
+
+</odoo>

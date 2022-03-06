@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        
+        <template id="products" name="Products">
+            <t t-call="website.layout">
+                departament
+                <t t-foreach="patients" t-as="pat">
+                    <t t-esc="pat.patient_name"/>
+                </t>
+            </t>
+        </template>
+
+    <record id="per_tree" model="ir.ui.view">
+        <field name="name">employeer.departament</field>
+        <field name="model">employeer.departament</field>
+        <field name="arch" type="xml">
+            <tree string="Departaments">
+                <field name="departament"/>
+                <field name="dep_members_ids"/>      
+                <field name="departament_manager"/> 
+            </tree>
+        </field>
+     </record>
+
+
+    <record id="per_form_2" model="ir.ui.view">
+        <field name="name">employeer.departament.form</field>
+        <field name="model">employeer.departament</field>
+        <field name="priority" eval="20"/>
+        <field name="arch" type="xml">
+            <form string="Depatament">
+                <header>
+                    <button id="export_into_json" name="export_into_json" string="Convert Json" class="btn-primary" type="object"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="departament"/>
+                            <field name="departament_manager"  domain="[('departament', '=', id)]" />
+                        </group>
+                        <group>
+                            <field name="departament_employeer_amount"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="All employers of departament" name="dep_employeres" domain="[('departament', '=', id)]" > 
+                            <field name="dep_members_ids">
+                                
+                                <tree delete="1" edit="1">
+                                    <field name="name"/>
+                                    <field name="lastname"/>
+                                    <field name="selfid"/>
+                                    <field name="gender"/>
+                                    <field name="birthdate"/>
+                                    <field name="age"/>
+                                    <field name="birthplace"/>
+                                    <field name="sitizen"/>
+                                </tree>  
+                                <form>
+                                    <field name="image" widget="image" class="oe_avatar"/>
+                                    <field name="image2" widget="image" class="oe_avatar"/>
+                                    <group>
+                                        <group>
+                                            <field name="name"/>
+                                            <field name="lastname"/>
+                                            <field name="selfid"/>
+                                            <field name="birthdate"/>
+                                            <field name="age"/>
+                                            <field name="birthplace"/>
+                                            <field name="sitizen"/>
+                                            <field name="gender"/>
+                                        </group>
+                                        <group>
+                                            <field name = "feature"/>
+                                        </group>
+                                        <group>
+                                            <field name="note"/>
+                                        </group>                            
+                                    </group>
+                                </form>                             
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="departament_search" model="ir.ui.view">
+            <field name="name">employeer.departament.search</field>
+            <field name="model">employeer.departament</field>
+            <field name="arch" type="xml">
+                <search string="departament...">
+                    <field name="departament"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Departament" name="departament" context="{'group_by':'departament'}"/>
+                        <filter string="Manager" name="departament_manager" context="{'group_by':'departament_manager'}"/> 
+                    </group>
+                </search>
+            </field>
+    </record>
+    <!--form view of the doctor model-->
+
+
+    <!--action of the doctor menu-->
+    <record id="action_comp_departament" model="ir.actions.act_window">
+        <field name="name">Departament</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employeer.departament</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="view_ids"
+                eval="[(5, 0, 0),
+                    (0, 0, {'sequence': 2, 'view_mode': 'tree', 'view_id': ref('company.per_tree')}),
+                    (0, 0, {'sequence': 3, 'view_mode': 'form', 'view_id': ref('company.per_form_2')}),
+                ]"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create  departament !
+          </p>
+        </field>
+    </record>
+
+    <!--menu for the doctor     create_departament_wizard  -->
+    
+
+    <menuitem
+        id="company_emp_departament" 
+        name="Departament" 
+        parent="company_root"
+        sequence="20"/>
+    
+    <menuitem
+        id="company_employeer_departament" 
+        name="Departament" 
+        parent="company_emp_departament"
+        action="action_comp_departament" 
+        sequence="20"/>
+    
+    <menuitem
+        id="wizard_employeer_departament" 
+        name="Temp Departament" 
+        parent="company_emp_departament"
+        action="create_departament_wizard" 
+        sequence="20"/>
+
+</odoo>
